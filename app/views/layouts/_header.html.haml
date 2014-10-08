@@ -4,6 +4,8 @@
       Tsubuyaki
 
     %ul.nav.navbar-nav
+      %li= link_to "users", users_path
+
       - if logged_in?
         %li= link_to "sign out", sessions_path, method: :delete
       - else
