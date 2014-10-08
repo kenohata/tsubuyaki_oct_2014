@@ -2,3 +2,10 @@
   .container-fluid
     = link_to root_path, class: "navbar-brand" do
       Tsubuyaki
+
+    %ul.nav.navbar-nav
+      - if logged_in?
+        %li= link_to "sign out", sessions_path, method: :delete
+      - else
+        %li= link_to "sign up", new_registrations_path
+        %li= link_to "sign in", new_sessions_path
