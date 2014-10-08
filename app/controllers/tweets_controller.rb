@@ -58,10 +58,15 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @tweet.destroy
     respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
-      format.json { head :no_content }
+      if @tweet.user == current_user
+        @tweet.destroy
+        format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to tweets_url }
+        format.json { head :bad_request }
+      end
     end
   end
 
