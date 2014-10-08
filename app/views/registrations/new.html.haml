@@ -1,2 +1,11 @@
-%h1 Registrations#new
-%p Find me in app/views/registrations/new.html.haml
+.col-xs-4.col-xs-offset-4
+  = form_tag registrations_path, method: :post do
+    %h2 Sign up
+    .form-group
+      = label_tag :email
+      = text_field_tag :email, nil, class: "form-control"
+    .form-group
+      = label_tag :password
+      = password_field_tag :password, nil, class: "form-control"
+
+    = submit_tag :submit, class: "btn btn-default"
