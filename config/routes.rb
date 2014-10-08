@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
+  get 'users/show'
+
   resource :registrations, only: [:new, :create]
   resource :sessions, only: [:new, :create, :destroy]
 
