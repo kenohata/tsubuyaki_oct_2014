@@ -21,3 +21,6 @@
         %h4.list-grou-item-heading
           = link_to tweet.user.email, tweet.user
         = tweet.content
+
+        - if tweet.user == current_user
+          = link_to "remove tweet", tweet, method: :delete, data: { confirm: "Are you ok?" }
