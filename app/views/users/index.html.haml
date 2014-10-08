@@ -1,2 +1,20 @@
-%h1 Users#index
-%p Find me in app/views/users/index.html.haml
+.col-xs-4
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        - if logged_in?
+          = current_user.email
+        - else
+          sign up today!
+    .panel-body
+      - if logged_in?
+        = link_to "sign out", sessions_path, method: :delete
+      - else
+        = link_to "sign up", new_registrations_path
+        = link_to "sign in", new_sessions_path
+
+.col-xs-8
+  .list-group
+    - @users.each do |user|
+      = link_to user, class: "list-group-item" do
+        = user.email
