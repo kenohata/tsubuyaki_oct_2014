@@ -1,6 +1,11 @@
 .col-xs-4.col-xs-offset-4
   = form_tag registrations_path, method: :post do
     %h2 Sign up
+
+    - if @user.invalid?
+      - @user.errors.full_messages.each do |message|
+        .alert.alert-warning= message
+
     .form-group
       = label_tag :email
       = text_field_tag :email, @user.email, class: "form-control"
