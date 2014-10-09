@@ -20,6 +20,10 @@
       .list-group-item
         %h4.list-grou-item-heading
           = link_to tweet.user.email, tweet.user
+        - if tweet.user.followers.where(id: current_user.id).exists?
+          = link_to "Unfollow", user_follows_path(tweet.user), method: :delete
+        - else
+          = link_to "Follow", user_follows_path(tweet.user), method: :post
         = tweet.content
 
         - if tweet.user == current_user
