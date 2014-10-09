@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resource :registrations, only: [:new, :create]
   resource :sessions, only: [:new, :create, :destroy]
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resource :follows, only: [:create, :destroy]
+  end
+
   resources :tweets do
     resource :favorites, only: [:create, :destroy]
   end
