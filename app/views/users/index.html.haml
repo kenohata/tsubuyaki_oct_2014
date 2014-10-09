@@ -18,3 +18,8 @@
     - @users.each do |user|
       = link_to user, class: "list-group-item" do
         = user.email
+
+        - if logged_in? and user.followers.where(id: current_user.id).exists?
+          = link_to "Unfollow", user_follows_path(user), method: :delete
+        - elsif logged_in?
+          = link_to "Follow", user_follows_path(user), method: :post
