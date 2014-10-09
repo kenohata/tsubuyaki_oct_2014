@@ -24,3 +24,7 @@
 
         - if tweet.user == current_user
           = link_to "remove tweet", tweet, method: :delete, data: { confirm: "Are you ok?" }
+        - if tweet.favorites.where(user_id: current_user.id).exists?
+          = link_to "unfav", tweet_favorites_path(tweet), method: :delete, data: { confirm: "Unfav?" }
+        - else
+          = link_to "fav", tweet_favorites_path(tweet), method: :post, data: { confirm: "Favorite?" }
