@@ -11,8 +11,12 @@ class FollowsController < ApplicationController
   def destroy
     @user   = User.find(params[:user_id])
     @follow = @user.follows.find_by!(follower_id: current_user.id)
-    @follow.destroy
 
-    redirect_to tweets_url
+    if @follow.follower == @follow.inverse_follower
+      redirect_to tweets_url, notice: "cannot unfollow yourself."
+    else
+      @follow.destroy
+      redirect_to tweets_url
+    end
   end
 end
